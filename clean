@@ -4,19 +4,19 @@
 TYPE=$1
 
 if [ -n $TYPE ] ; then
-    echo "Your working directory is" \"$(pwd)\"
-    echo "This action will remove all "$TYPE" aux files from this directory onwards."
-    printf "Are you sure you want to continue? (Y/N) "
+    echo 'Your working directory' is \'$(pwd)\'
+    echo 'This action will remove all' $TYPE 'aux files from this directory onwards.'
+    printf 'Are you sure you want to continue? (Y/N) '
     read CHECK
     if [ \( $CHECK == 'Y' \) -o \( $CHECK == 'y' \) ] ; then
         case $TYPE in
 #
         -tex)
             EXT=$(find . -type f -name '*.tex' 2>/dev/null)
-            declare -a DEL=(".aux" ".bbl" ".bcf" ".blg" ".lof" ".log" ".out" ".run.xml" ".toc")
+            DEL=".aux .bbl .bcf .blg .lof .log .out .run.xml .toc"
             for RES in $EXT
             do
-                for OBJ in "${DEL[@]}"
+                for OBJ in $DEL
                 do
                     OBJ="${RES/.tex/$OBJ}"
                     rm -f -v $OBJ
@@ -28,16 +28,16 @@ if [ -n $TYPE ] ; then
             EXT=$(find . -type f -name '*.java' 2>$1 | grep -v 'Permission denied')
 			DEL=.class
             for OBJ in $EXT
-			do
-				OBJ="${OBJ/.java/$DEL}"
-				rm -f -v $OBJ
-			done
+            do
+                OBJ="${OBJ/.java/$DEL}"
+                rm -f -v $OBJ
+            done
         esac
     elif [ \( $CHECK == 'N' \) -o \( $CHECK == 'n' \) ] ; then
         echo "No changes made."
         exit
     else
-        echo "Invalid input. Aborting..."
+        echo "Invalid input. No changes made."
         exit
     fi
 fi
