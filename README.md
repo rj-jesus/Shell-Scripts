@@ -10,14 +10,12 @@ Cleans all files found from your current directory according to the argument spe
 
 Current allowed arguments:
 
--tex
--java
+-ext <ext_to_lookfor>
 
-
-***-tex*** 
+***tex*** 
 Cleans all auxiliar files generated at LaTeX documents' compilation.
 
-***-java*** 
+***java*** 
 Cleans all *.class files.
 
 Notice: 
