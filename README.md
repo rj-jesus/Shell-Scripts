@@ -15,7 +15,7 @@ clean [-function] [-predicate]
 Current allowed functions:
 
 ```
--ext
+-ext -show
 ```
 
 #### -ext allowed predicates
@@ -29,10 +29,18 @@ Cleans all *.class files.
 Notice: 
   Be careful when executing this command since you might end up removing files that are other programs need.  
   Because of this, a warning message will be displayed printing your working directory and asking for the user confirmation.
-  
+
+#### -show allowed predicates
+
+***tex***  
+Shows all auxiliar files generated at LaTeX documents' compilation.
+
+***java***  
+Shows all *.class files.
+
 ### TODO:
 
-Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.  
+~~Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.~~  
 Add ***-add*** funciton to allow you to add a given extension to look for.
 
 
