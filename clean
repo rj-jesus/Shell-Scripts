@@ -6,18 +6,22 @@ EXT="java tex"
 TEX=".aux .bbl .bcf .blg .lof .log .out .run.xml .toc"
 JAVA=".class"
 
+RM="rm -f -v"
+ECHO="echo"
+
 function OBJManipulation(){
     for FILE in $(find . -type f -iname "*"$2 2>/dev/null)
     do
         for OBJ in $3
         do
             OBJ="${FILE/$2/$OBJ}"
-            "$1" $OBJ
+            [ -f "$OBJ" ] && $1 "$OBJ" &
         done
     done
+    wait
 }
 
-if [ "$#" -ne 2 ] ; then
+if [ "$#" -lt 2 ] ; then
     echo "Usage: clean [-func] [-predicate]"
     exit
 elif [[ $FUNC != *"$1"* ]] ; then
@@ -37,6 +41,23 @@ else
             exit
         fi
     esac
+    if [ "$#" -gt 3 ] ; then
+        if [ "$3" == "-add" ] ; then
+            case $2 in
+            tex)
+                for STR in "${@: 4}"
+                do
+                    TEX="$TEX"" "".$STR"
+                done
+            ;;
+            java)
+                for STR in "${@: 4}"
+                do
+                    JAVA="$JAVA"" "".$STR"
+                done
+            esac
+        fi
+    fi
 fi
 
 case $1 in
@@ -55,17 +76,16 @@ case $1 in
         exit
     fi
     case $2 in
-    tex) OBJManipulation "rm -f -v" "."$2 "$TEX"
+    tex) OBJManipulation "$RM" "."$2 "$TEX"
     ;;
-    java) OBJManipulation "rm -f -v" "."$2 "$JAVA"
+    java) OBJManipulation "$RM" "."$2 "$JAVA"
     esac
 ;;
 -show)
     echo "Your working directory" is \'$(pwd)\'
-    echo "List of files to delete:"
     case $2 in
-    tex) OBJManipulation "echo" "."$2 "$TEX"
+    tex) OBJManipulation "$ECHO" "."$2 "$TEX"
     ;;
-    java) OBJManipulation "echo" "."$2 "$JAVA"
+    tex) OBJManipulation "$ECHO" "."$2 "$JAVA"
     esac
 esac
