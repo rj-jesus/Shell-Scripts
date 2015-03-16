@@ -86,6 +86,6 @@ case $1 in
     case $2 in
     tex) OBJManipulation "$ECHO" "."$2 "$TEX"
     ;;
-    tex) OBJManipulation "$ECHO" "."$2 "$JAVA"
+    java) OBJManipulation "$ECHO" "."$2 "$JAVA"
     esac
 esac
