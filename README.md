@@ -15,7 +15,7 @@ clean [-function] [-predicate]
 Current allowed functions:
 
 ```
--ext -show
+[-ext || -show] [-add]
 ```
 
 #### -ext allowed predicates
@@ -38,10 +38,19 @@ Shows all auxiliar files generated at LaTeX documents' compilation.
 ***java***  
 Shows all *.class files.
 
+#### -add
+
+Use it after any other function so that all arguments after it will be included to the extension list to look for.  
+Example:  
+```
+clean -show tex -add xpto
+```
+Will also look for **\*.xpto** besides the other usual extensions.
+
 ### TODO:
 
 ~~Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.~~  
-Add ***-add*** funciton to allow you to add a given extension to look for.
+~~Add ***-add*** funciton to allow you to add a given extension to look for.~~
 
 
 Ricardo Jesus
