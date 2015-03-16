@@ -4,23 +4,36 @@ Hosting some of my utility shell scripts. Despite writing them mostly to learn h
 
 Place the scripts into /home/your_username/bin/
 
-**Clean**
+### Clean
 
-Cleans all files found from your current directory according to the argument specified.
+Cleans all files found from your current directory according to the argument specified. Syntax:
 
-Current allowed arguments:
+```
+clean [-function] [-predicate]
+```
 
--ext <ext_to_lookfor>
+Current allowed functions:
 
-***tex*** 
+```
+-ext
+```
+
+#### -ext allowed predicates
+
+***tex***  
 Cleans all auxiliar files generated at LaTeX documents' compilation.
 
-***java*** 
+***java***  
 Cleans all *.class files.
 
 Notice: 
-  Be careful when executing this command since you might end up removing files that are other programs need.
+  Be careful when executing this command since you might end up removing files that are other programs need.  
   Because of this, a warning message will be displayed printing your working directory and asking for the user confirmation.
+  
+## TODO:
+
+Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.  
+Add ***-add*** funciton to allow you to add a given extension to look for.
 
 
 Ricardo Jesus
