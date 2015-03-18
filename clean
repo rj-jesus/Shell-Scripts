@@ -3,7 +3,7 @@
 
 FUNC="-ext -show"
 EXT="java tex"
-TEX=".aux .bbl .bcf .blg .lof .log .out .run.xml .toc"
+TEX=".aux .bbl .bcf .blg .lof .log .lot .out .run.xml .toc"
 JAVA=".class"
 
 RM="rm -f -v"
