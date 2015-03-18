@@ -1,0 +1,45 @@
+#!/bin/bash
+# Custom change directory
+
+OBJ=("OBJ")
+
+function lookFor(){
+    case $2 in
+    */)
+        while IFS= read -r -d '' RES;
+        do
+            OBJ+=("${RES/" "/"\ "}")
+        done < <(find "$1" -type d -name "${2%?}" -print0 2>/dev/null)
+    ;;
+    *)
+        while IFS= read -r -d '' RES;
+        do
+            OBJ+=("${RES/" "/"\ "}")
+        done < <(find "$1" -type d -name "$2" -print0 2>/dev/null)
+    esac
+}
+
+if [ "$#" != 1 ] || [ $0 != bash ]; then
+    echo "Usage: . ccd <DirectoryName>"
+else
+    lookFor "." "$1"
+    if [ "${#OBJ[@]}" == 1 ]; then
+        lookFor "$HOME" "$1"
+    fi
+    if [ "${#OBJ[@]}" == 2 ]; then
+        eval cd "${OBJ[1]}"
+    elif [ "${#OBJ[@]}" -gt 2 ]; then
+        for ((i=1; i<${#OBJ[@]}; i++)); do
+            printf "$i) ${OBJ[$i]}\n"
+        done
+        read ENTRY
+        until [ \( "$ENTRY" -gt 0 \) -a \( "$ENTRY" -lt ${#OBJ[@]} \) ]
+        do
+            read ENTRY
+        done
+        eval cd "${OBJ[ENTRY]}"
+    else
+        echo "$1: No such file or directory."
+    fi;
+fi;
+
