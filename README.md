@@ -6,7 +6,7 @@ Place the scripts into ```/home/your_username/bin/```
 
 ## Clean
 
-Cleans all files found from your current directory according to the argument specified. Syntax:
+clean - clean - Cleans all files found from your current directory according to the argument specified. Syntax:
 
 ```
 clean [-function] [-predicate]
@@ -52,5 +52,25 @@ Will also look for **\*.xpto** besides the other usual extensions.
 ~~Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.~~  
 ~~Add ***-add*** funciton to allow you to add a given extension to look for.~~
 
+## CCD
+
+ccd - custom change directory - Changes directory to specified location.  
+Imagine the following directory tree:
+```
+~/GitHub/Python/MyProject1/SubProject1/
+```
+Instead of ```cd GitHub, cd Python, ... cd SubProject1```, ```ccd``` allows you to directly
+```. ccd SubProject1```  
+Notice the use of the ```source``` indication when running the script. Thus, it is necessary to run it either as 
+```
+. ccd <dir_name> or source ccd <dir_name>
+```.  
+Other possibility is to change the ```~/.bashrc``` file and add a funtion to run the same script, which I might add later since it would allow direct ```ccd <dir_name>``` usage.  
+
+### TODO:
+
+Add ***completition*** to directory name (that can actually be pretty useful especially since you might be cd'ing from far away).  
+Do some optimization to the code, probably after ***completition*** is done.  
+Write ```.bashrc``` function (once I get a few minutes free).
 
 Ricardo Jesus
