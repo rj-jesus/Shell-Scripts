@@ -78,10 +78,16 @@ In case you use this ```.bashrc``` trick you can simply run the script as:
 ccd <dir_name>
 ```
 
+#### Completion
+In order to enable tab completion you need to copy the code at ```ccd_completion_rules``` to ```/etc/bash_completion.d/ccd``` (use ```nano, vim``` or something similar, and fill free to skip the comments). After that once you open a new shell session you should have tab completion enabled to ```ccd```.  
+If people complain about running times of this completion method I might added a cached version of it. This should only be a problem if there are too many directories from ```~``` onwards.
+
+
 ### TODO:
 
-Add ***completition*** to directory name (that can actually be pretty useful especially since you might be cd'ing from far away).  
+~~Add ***completion*** to directory name (that can actually be pretty useful especially since you might be cd'ing from far away).~~  
 Do some optimization to the code, probably after ***completition*** is done.  
-~~Write ```.bashrc``` function (once I get a few minutes free).~~
+~~Write ```.bashrc``` function (once I get a few minutes free).~~  
+Do some clean up to  the code, and add greater support to the usage of folders with spaces.
 
 Ricardo Jesus
