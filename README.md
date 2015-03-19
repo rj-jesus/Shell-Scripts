@@ -72,9 +72,11 @@ ccd(){
 . ccd "$@"
 }
 ```
-And have the script in the usual ```~/bin/ or `/bin``` directory.
-
-
+And have the script in the usual ```~/bin/ or /bin``` directory.  
+In case you use this ```.bashrc``` trick you can simply run the script as:  
+```
+ccd <dir_name>
+```
 
 ### TODO:
 
