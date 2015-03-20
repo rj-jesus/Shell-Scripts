@@ -1,53 +1,28 @@
 #!/bin/bash
-# Custom change directory
 
 DIR="$*"
-OBJ=("OBJ")
+mapfile -t OBJ < <(find . \( ! -regex '.*/\..*' \) -type d -name "$DIR" 2>/dev/null)
 
-#function lookFor(){
-#    case $2 in
-#    */)
-#        while IFS= read -r -d '' RES;
-#        do
-#            OBJ+=("${RES/" "/"\ "}")
-#        done < <(find "$1" \( ! -regex '.*/\..*' \) -type d -name "${2%?}" -print0 2>/dev/null)
-#    ;;
-#    *)
-#        while IFS= read -r -d '' RES;
-#        do
-#            OBJ+=("${RES/" "/"\ "}")
-#        done < <(find "$1" \( ! -regex '.*/\..*' \) -type d -name "$2" -print0 2>/dev/null)
-#    esac
-#}
-
-function lookFor(){
-    while IFS= read -r -d '' RES;
-    do
-        OBJ+=("${RES/" "/"\ "}")
-    done < <(find "$1" \( ! -regex '.*/\..*' \) -type d -name "$2" -print0 2>/dev/null)
-}
-
-if [ "$#" -lt 1 ] || [ $0 != bash ]; then
+if [ "$#" -lt 1 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
     echo "Usage: . ccd <dir_name>"
 else
-    lookFor "$(pwd)" "$DIR"
-    if [ "${#OBJ[@]}" == 1 ]; then
-        lookFor "$HOME" "$DIR"
+    if [ "${#OBJ[@]}" == 0 ]; then
+        mapfile -t OBJ < <(find ~ \( ! -regex '.*/\..*' \) -type d -name "$DIR" 2>/dev/null)
     fi
-    if [ "${#OBJ[@]}" == 2 ]; then
-        eval cd "${OBJ[1]}"
-    elif [ "${#OBJ[@]}" -gt 2 ]; then
-        for ((i=1; i<${#OBJ[@]}; i++)); do
-            printf "$i) ${OBJ[$i]}\n"
+    if [ "${#OBJ[@]}" == 1 ]; then
+        eval cd "${OBJ[0]//" "/"\ "}"
+    elif [ "${#OBJ[@]}" -gt 1 ]; then
+        for ((i=0; i<${#OBJ[@]}; i++)); do
+            OBJ[$i]="${OBJ[i]//" "/"\ "}"
+            printf "$((i+1))) ${OBJ[$i]}\n"
         done
         read ENTRY
-        until [ \( "$ENTRY" -gt 0 \) -a \( "$ENTRY" -lt ${#OBJ[@]} \) ]
+        until [ \( "$ENTRY" -gt 0 \) -a \( "$ENTRY" -le ${#OBJ[@]} \) ]
         do
             read ENTRY
         done
-        eval cd "${OBJ[ENTRY]}"
+        eval cd "${OBJ[$((ENTRY-1))]}"
     else
         echo "$DIR: No such file or directory."
-    fi;
-fi;
-
+    fi
+fi
