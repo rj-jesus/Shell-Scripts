@@ -87,8 +87,8 @@ If people complain about running times of this completion method I might added a
 ### TODO:
 
 ~~Add ***completion*** to directory name (that can actually be pretty useful especially since you might be cd'ing from far away).~~  
-Do some optimization to the code, probably after ***completition*** is done.  
+Do some optimization to the code, probably after ***completition*** is done. Also work on Mac OSX support.  
 ~~Write ```.bashrc``` function (once I get a few minutes free).~~  
-Do some clean up to the code, and add greater support to the usage of folders with spaces.
+~~Do some clean up to the code, and add greater support to the usage of folders with spaces.~~ Partially done.
 
 Ricardo Jesus
