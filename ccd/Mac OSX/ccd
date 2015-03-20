@@ -16,11 +16,11 @@ else
             OBJ+=("${DIR//" "/"\ "}")
         done < <(find . \( ! -regex '.*/\..*' \) -type d -name "$DIR" -print0 2>/dev/null)
     fi
-    if [ "${#OBJ[@]}" == 1 ]; then
-        eval cd "${OBJ[1]//" "/"\ "}"
-    elif [ "${#OBJ[@]}" -gt 1 ]; then
+    if [ "${#OBJ[@]}" == 2 ]; then
+        eval cd "${OBJ[1]}"
+    elif [ "${#OBJ[@]}" -gt 2 ]; then
         for ((i=1; i<${#OBJ[@]}; i++)); do
-            OBJ[$i]="${OBJ[i]//" "/"\ "}"
+            OBJ[$i]="${OBJ[i]}"
             printf "$i) ${OBJ[$i]}\n"
         done
         read ENTRY
