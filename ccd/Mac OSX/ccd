@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR="$*"
+OBJ=("OBJ")
 while IFS= read -r -d '' DIR;
 do
     OBJ+=("${DIR//" "/"\ "}")
