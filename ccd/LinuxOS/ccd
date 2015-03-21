@@ -16,7 +16,7 @@ else
             OBJ[$i]="${OBJ[i]//" "/"\ "}"
             printf "$((i+1))) ${OBJ[$i]}\n"
         done
-        read ENTRY
+        local ENTRY="-1"
         until [ \( "$ENTRY" -gt 0 \) -a \( "$ENTRY" -le ${#OBJ[@]} \) ]
         do
             read ENTRY
