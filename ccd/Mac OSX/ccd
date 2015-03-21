@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OBJ=("OBJ")
+local OBJ
 while IFS= read -r -d '' DIR;
 do
     OBJ+=("${DIR//" "/"\ "}")
@@ -9,25 +9,24 @@ done < <(find . \( ! -regex '.*/\..*' \) -type d -name "$*" -print0 2>/dev/null)
 if [ "$#" -lt 1 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
     echo "Usage: . ccd <dir_name>"
 else
-    if [ "${#OBJ[@]}" == 1 ]; then
+    if [ "${#OBJ[@]}" == 0 ]; then
         while IFS= read -r -d '' DIR;
         do
             OBJ+=("${DIR//" "/"\ "}")
         done < <(find $HOME \( ! -regex '.*/\..*' \) -type d -name "$*" -print0 2>/dev/null)
     fi
-    if [ "${#OBJ[@]}" == 2 ]; then
-        eval cd ${OBJ[1]}
-    elif [ "${#OBJ[@]}" -gt 2 ]; then
-        for ((i=1; i<${#OBJ[@]}; i++)); do
-            OBJ[$i]="${OBJ[i]}"
-            printf "$i) ${OBJ[$i]}\n"
+    if [ "${#OBJ[@]}" == 1 ]; then
+        eval cd "${OBJ[0]}"
+    elif [ "${#OBJ[@]}" -gt 1 ]; then
+        for ((i=0; i<${#OBJ[@]}; i++)); do
+            printf "$((i+1))) ${OBJ[$i]}\n"
         done
         read ENTRY
         until [ \( "$ENTRY" -gt 0 \) -a \( "$ENTRY" -le ${#OBJ[@]} \) ]
         do
             read ENTRY
         done
-        eval cd ${OBJ[$ENTRY]}
+        eval cd "${OBJ[$((ENTRY-1))]}"
     else
         echo "$*: No such file or directory."
     fi

@@ -1,7 +1,9 @@
 # /etc/bash_completion.d/ccd
-# Ignoring directories started with "."
 
-mapfile -t _all_dir_names < <( find ~ \( ! -regex '.*/\..*' \) -type d -printf "%f\n" 2>/dev/null)
+while IFS= read -r -d '' DIR;
+do
+    _all_dir_names+=("${DIR//" "/"\ "}")
+done < <(find . \( ! -regex '.*/\..*' \) -type d -print0 2>/dev/null)
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()

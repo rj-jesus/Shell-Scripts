@@ -1,13 +1,13 @@
 #!/bin/bash
 
-DIR="$*"
-mapfile -t OBJ < <(find . \( ! -regex '.*/\..*' \) -type d -name "$DIR" 2>/dev/null)
+local OBJ
+mapfile -t OBJ < <(find . \( ! -regex '.*/\..*' \) -type d -name "$*" 2>/dev/null)
 
-if [ "$#" -lt 1 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
+if [ "$#" == 0 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
     echo "Usage: . ccd <dir_name>"
 else
     if [ "${#OBJ[@]}" == 0 ]; then
-        mapfile -t OBJ < <(find ~ \( ! -regex '.*/\..*' \) -type d -name "$DIR" 2>/dev/null)
+        mapfile -t OBJ < <(find ~ \( ! -regex '.*/\..*' \) -type d -name "$*" 2>/dev/null)
     fi
     if [ "${#OBJ[@]}" == 1 ]; then
         eval cd "${OBJ[0]//" "/"\ "}"
@@ -23,6 +23,6 @@ else
         done
         eval cd "${OBJ[$((ENTRY-1))]}"
     else
-        echo "$DIR: No such file or directory."
+        echo "$*: No such file or directory."
     fi
 fi
