@@ -4,4 +4,4 @@ Since the completion of this script is quite resources demanding I've decided to
 
 #### CRON Log
 
-Still in early development. No usable.
+~~Still in early development. Not usable.~~
