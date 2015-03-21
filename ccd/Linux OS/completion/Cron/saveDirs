@@ -1,5 +1,4 @@
 #!/bin/bash
 # Script runned to generate list of available directories for _ccd
 
-find ~ \( ! -regex '.*/\..*' \) -type d -printf "%f\n" 2>/dev/null > /tmp/ccd.txt
-sort /tmp/ccd.txt | uniq -u > /tmp/ccd.txt
+mapfile -t OBJ < <(find $HOME \( ! -regex '.*/\..*' \) -type d -printf "%f\n" 2>/dev/null | sort | uniq -u > /tmp/ccd.txt)
