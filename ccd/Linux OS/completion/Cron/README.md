@@ -6,3 +6,18 @@ As a side note, all files here are related to completion jobs. Thus, the file na
 #### CRON Log
 
 ~~Still in early development. Not usable.~~
+As of now, completion with cron works with no seen bugs. In order to enable it, do the following:  
+```
+~$ crontab -e
+```  
+You should be promped to choose a text editor. Any will work of course. After that, had the following jobs to the file you are displayed:  
+```
+@reboot ~/bin/saveDirs &
+*/12 * * * * ~/bin/saveDirs &
+```  
+And have the script ```saveDirs``` at your usual ```~/bin``` directory (I might add some functionality to it later).  
+
+This will make that, at system start-up, a file with all the possible completions are generated (the process runs threaded and it's pretty fast so it shouldn't be a problem). After that, every (in this case) 12 minutes the rules are updated (in case you create new directories or whatnot). Still, you can change this value to whatever you want. This also runs threaded.  
+After this is done, you should have a working completion scheme for ```ccd``` (given that you updated the completion rule on ```/etc/bash_completion.d```.
+
+Ricardo Jesus
