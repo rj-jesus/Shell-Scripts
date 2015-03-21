@@ -46,3 +46,4 @@ Will also look for **\*.xpto** besides the other usual extensions.
 ~~Add ***-show*** function to display files that will be removed in case you run a deleting funciton as ***-ext***.~~  
 ~~Add ***-add*** funciton to allow you to add a given extension to look for.~~
 
+Ricardo Jesus
