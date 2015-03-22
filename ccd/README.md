@@ -35,4 +35,6 @@ You can use completion with or without using ```crontab```. I myself prefere wit
 ~~Do some clean up to the code, and add greater support to the usage of folders with spaces. Partially done.~~  
 Mac OSX support.
 
+**CCD does not work for Mac OSX yet.**
+
 Ricardo Jesus
