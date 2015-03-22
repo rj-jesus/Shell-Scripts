@@ -35,7 +35,7 @@ You can use completion with or without using ```crontab```. I myself prefere wit
 ~~Add ***completion*** to directory names (that can actually be pretty useful especially since you might be cd'ing from far away).~~  
 ~~Do some optimization to the code, probably after ***completition*** is done.~~  
 ~~Write ```.bashrc``` function (once I get a few minutes free).~~  
-~~Do some clean up to the code, and add greater support to the usage of folders with spaces. Partially done.~~
+~~Do some clean up to the code, and add greater support to the usage of folders with spaces. Partially done.~~  
 Mac OSX support.
 
 Ricardo Jesus
