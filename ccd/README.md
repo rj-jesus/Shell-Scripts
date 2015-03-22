@@ -8,11 +8,8 @@ Imagine the following directory tree:
 Instead of ```cd GitHub, cd Python, ..., cd SubProject1```, ```ccd``` allows you to directly
 ```. ccd SubProject1```.  
 Notice the use of the ```source``` when running the script. Thus, it is necessary to run it either as 
-```
-. ccd <dir_name> or source ccd <dir_name>
-``` 
-or change the ```~/.bashrc``` file.  
-In order for this to work add the following code to your ```~/.bashrc```:  
+```. ccd <dir_name>``` or ```source ccd <dir_name>```, or change the ```~/.bashrc``` file.  
+In order for this last option to work add the following lines to your ```~/.bashrc```:  
 ```
 ccd(){
 . ccd "$@"
