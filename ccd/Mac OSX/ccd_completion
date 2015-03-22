@@ -7,6 +7,7 @@ done < <(find . \( ! -regex '.*/\..*' \) -type d -print0 2>/dev/null)
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()
+    eval cur="$cur"
     for dir in "${_all_dir_names[@]}"; do
         if [[ $dir == "$cur"* ]]; then
             printf -v dir "%q" "$dir"       

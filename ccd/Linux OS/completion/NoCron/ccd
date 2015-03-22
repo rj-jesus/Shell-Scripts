@@ -5,6 +5,7 @@ mapfile -t _all_dir_names < <( find ~ \( ! -regex '.*/\..*' \) -type d -printf "
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()
+    eval cur="$cur"
     for dir in "${_all_dir_names[@]}"; do
         if [[ $dir == "$cur"* ]]; then
             printf -v dir "%q" "$dir"       
