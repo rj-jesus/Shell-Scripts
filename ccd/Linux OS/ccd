@@ -3,7 +3,7 @@
 local OBJ
 mapfile -t OBJ < <(find . \( ! -regex '.*/\..*' \) -type d -name "$*" 2>/dev/null)
 
-if [ "$#" == 0 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
+if [ "$#" == 0 ] || [ $0 != "bash" ]; then
     echo "Usage: . ccd <dir_name>"
 else
     if [ "${#OBJ[@]}" == 0 ]; then
