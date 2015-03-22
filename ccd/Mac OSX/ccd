@@ -6,7 +6,7 @@ do
     OBJ+=("${DIR//" "/"\ "}")
 done < <(find . \( ! -regex '.*/\..*' \) -type d -name "$*" -print0 2>/dev/null)
 
-if [ "$#" -lt 1 ] || [ \( $0 != "bash" \) -a \( $0 != "-bash" \) ]; then
+if [ "$#" -lt 1 ] || [ $0 != "-bash" ]; then
     echo "Usage: . ccd <dir_name>"
 else
     if [ "${#OBJ[@]}" == 0 ]; then
