@@ -3,7 +3,7 @@
 while IFS= read -r -d '' DIR;
 do
     _all_dir_names+=("${DIR//" "/"\ "}")
-done < <(find . \( ! -regex '.*/\..*' \) -type d -print0 2>/dev/null)
+done < <(find ~ \( ! -regex '.*/\..*' \) -type d -print0 2>/dev/null)
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()

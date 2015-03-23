@@ -1,0 +1,28 @@
+# /etc/bash_completion.d/ccd
+# This version of _ccd also works standalone, but may take advantage of Cron usage (if it was configured). Thus, it's preferable.
+# Despite working without Cron, it assumes that you are using it (otherwise it's useless to have that first 'if' conditional).
+# Instructions for setting the Cron jobs are available at the associated README
+
+if [ -r "/tmp/ccd.txt" ]; then
+    while IFS= read -r -d '' DIR;
+    do
+        _all_dir_names+=("${DIR//" "/"\ "}")
+    done < <(cat /tmp/ccd.txt)
+else
+    while IFS= read -r -d '' DIR;
+    do
+        _all_dir_names+=("${DIR//" "/"\ "}")
+    done < <(find ~ \( ! -regex '.*/\..*' \) -type d -print0 2>/dev/null)
+fi
+_ccd(){
+    local dir cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=()
+    eval cur="$cur"
+    for dir in "${_all_dir_names[@]}"; do
+        if [[ $dir == "$cur"* ]]; then
+            printf -v dir "%q" "$dir"       
+            COMPREPLY+=("$dir")
+        fi
+    done
+}
+complete -F _ccd ccd
