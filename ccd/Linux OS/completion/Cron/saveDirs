@@ -1,3 +1,0 @@
-#!/bin/bash
-
-find $HOME \( ! -regex '.*/\..*' \) -type d -printf "%f\n" 2>/dev/null | sort | uniq > /tmp/ccd.txt

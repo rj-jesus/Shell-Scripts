@@ -1,6 +1,5 @@
 #!/bin/bash
 
-local OBJ
 mapfile -t OBJ < <(find . \( ! -regex '.*/\..*' \) -type d -name "$*" 2>/dev/null)
 
 if [ "$#" == 0 ] || [ $0 != "bash" ]; then
