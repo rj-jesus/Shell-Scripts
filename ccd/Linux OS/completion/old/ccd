@@ -1,7 +1,5 @@
-# /etc/bash_completion.d/ccd
-# This version of _ccd works standalone, although it's much slower to load.
-
 mapfile -t _all_dir_names < <( find ~ \( ! -regex '.*/\..*' \) -type d -printf "%f\n" 2>/dev/null)
+fi
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()
@@ -14,4 +12,3 @@ _ccd(){
     done
 }
 complete -F _ccd ccd
-
