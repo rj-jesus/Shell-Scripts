@@ -1,6 +1,7 @@
 if [ -r "/tmp/ccd.txt" ]; then
     mapfile -t _all_dir_names < <(cat /tmp/ccd.txt)
 else
+    source ~/.bashrc
     saveDirs
     mapfile -t _all_dir_names < <(cat /tmp/ccd.txt)
 fi
