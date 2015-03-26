@@ -32,4 +32,6 @@ After that, close the terminal window, open a new one and try to run ```saveDirs
 Now, just try to have some word completed by pressing the ```tab``` key. For example, in my case if I type ```ccd [tab][tab]``` (where ```[tab]``` denotes the ```tab``` key being pressed), I currently get a message asking me if I want all the 1180 possible completions being listed. If you get such a big number (or close), odds are everything is working fine.  
 Congratulations on finishing all the set up needed to make this script fully working! Hope it deserves the effort.  
 
+***Notice:*** On the folder old you will find an old version of the ```ccd``` completion rule. You can use it if you don't want to add the ```saveDirs``` to your ```.bashrc``` but I advise against using it, since not only does it seem more prone to erros but is also not as good. Still, that's your decision.  
+
 Ricardo Jesus
