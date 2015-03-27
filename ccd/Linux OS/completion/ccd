@@ -1,17 +1,19 @@
-if [ -r "/tmp/ccd.txt" ]; then
-    mapfile -t _all_dir_names < <(cat /tmp/ccd.txt)
-else
+mapfull(){
     source ~/.bashrc
     saveDirs
-    mapfile -t _all_dir_names < <(cat /tmp/ccd.txt)
+}
+if ! [ -r "/tmp/ccd.txt" ]; then
+    mapfull &
+    wait
 fi
+mapfile -t _all_dir_names < <(cat /tmp/ccd.txt)
 _ccd(){
     local dir cur=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=()
     eval cur="$cur"
     for dir in "${_all_dir_names[@]}"; do
         if [[ $dir == "$cur"* ]]; then
-            printf -v dir "%q" "$dir"
+            printf -v dir "%q" "$dir"       
             COMPREPLY+=("$dir")
         fi
     done
